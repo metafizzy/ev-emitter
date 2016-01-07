@@ -1,6 +1,26 @@
+/**
+ * EvEmitter v0.1.0
+ * Lil' event emitter
+ * MIT License
+ */
+
 /* jshint unused: true, undef: true, strict: true */
 
-( function( global ) {
+( function ( global, factory ) {
+  // universal module definition
+  /* jshint strict: false */ /* globals define, module */
+  if ( typeof define == 'function' && define.amd ) {
+    // AMD - RequireJS
+    define( factory );
+  } else if ( typeof module == 'object' && module.exports ) {
+    // CommonJS - Browserify, Webpack
+    module.exports = factory();
+  } else {
+    // Browser globals
+    global.EvEmitter = factory();
+  }
+
+}( this, function () {
 
 "use strict";
 
@@ -60,22 +80,22 @@ proto.emitEvent = function( eventName, args ) {
   var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
 
   while ( listener ) {
-    // trigger listener
-    listener.apply( this, args );
     var isOnce = onceListeners && onceListeners[ listener ];
     if ( isOnce ) {
       // remove listener
+      // remove before trigger to prevent recursion
       this.off( eventName, listener );
       // unset once flag
       delete onceListeners[ listener ];
-    } else {
-      i++;
     }
+    // trigger listener
+    listener.apply( this, args );
     // get next listener
+    i += isOnce ? 0 : 1;
     listener = listeners[i];
   }
 };
 
-global.EvEmitter = EvEmitter;
+return EvEmitter;
 
-})( this );
+}));
