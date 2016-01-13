@@ -1,6 +1,6 @@
 {
   "name": "ev-emitter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "lil' event emitter",
   "main": "ev-emitter.js",
   "scripts": {
