@@ -20,7 +20,7 @@
     global.EvEmitter = factory();
   }
 
-}( this, function() {
+}(typeof window !== "undefined" ? window : this, function() {
 
 "use strict";
 
