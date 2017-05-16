@@ -1,5 +1,5 @@
 /**
- * EvEmitter v1.0.3
+ * EvEmitter v1.1.0
  * Lil' event emitter
  * MIT License
  */
@@ -102,6 +102,12 @@ proto.emitEvent = function( eventName, args ) {
   }
 
   return this;
+};
+
+proto.allOff =
+proto.removeAllListeners = function() {
+  delete this._events;
+  delete this._onceEvents;
 };
 
 return EvEmitter;

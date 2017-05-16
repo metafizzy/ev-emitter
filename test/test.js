@@ -110,3 +110,25 @@ it( 'handles emitEvent with no listeners', function() {
     emitter.emitEvent( 'pop', [ 1, 2, 3 ] );
   });
 });
+
+
+it( 'removes all listeners after removeAllListeners', function() {
+  var emitter = new EvEmitter();
+  var ary = [];
+  emitter.on( 'pop', function() {
+    ary.push('a');
+  });
+  emitter.on( 'pop', function() {
+    ary.push('b');
+  });
+  emitter.once( 'pop', function() {
+    ary.push('c');
+  });
+
+  emitter.emitEvent('pop');
+  emitter.removeAllListeners();
+  // emitter.allOff();
+  emitter.emitEvent('pop');
+
+  assert.equal( ary.join(','), 'a,b,c', 'removeAllListeners removed listeners' );
+});
