@@ -70,7 +70,7 @@ emitter.allOff()
 
 ``` js
 // create event emitter
-var emitter = new EventEmitter();
+var emitter = new EvEmitter();
 
 // listeners
 function hey( a, b, c ) {
@@ -87,9 +87,9 @@ function letsGo( a, b, c ) {
 
 // bind listeners
 emitter.on( 'rock', hey )
-emitter.once( 'rock', ho )
+emitter.on( 'rock', ho )
 // trigger letsGo once
-emitter.on( 'rock', letsGo )
+emitter.once( 'rock', letsGo )
 
 // emit event
 emitter.emitEvent( 'rock', [ 1, 2, 3 ] )
