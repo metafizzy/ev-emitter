@@ -170,3 +170,24 @@ test( 'removes all listeners after allOff', function( t ) {
 
   t.is( ary.join(','), 'a,b,c', 'allOff removed listeners' );
 } );
+
+test( 'class extends', function( t ) {
+  class Widgey extends EvEmitter {}
+
+  let wijjy = new Widgey();
+
+  t.is( typeof wijjy.on, 'function' );
+  t.is( typeof wijjy.off, 'function' );
+  t.is( typeof wijjy.once, 'function' );
+} );
+
+test( 'Object.assign prototype', function( t ) {
+  function Thingie() {}
+  Object.assign( Thingie.prototype, EvEmitter.prototype );
+
+  let thing = new Thingie();
+
+  t.is( typeof thing.on, 'function' );
+  t.is( typeof thing.off, 'function' );
+  t.is( typeof thing.once, 'function' );
+} );
