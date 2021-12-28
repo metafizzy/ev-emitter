@@ -4,9 +4,9 @@
   "description": "lil' event emitter",
   "main": "ev-emitter.js",
   "devDependencies": {
-    "ava": "^3.14.0",
-    "eslint": "^7.15.0",
-    "eslint-plugin-metafizzy": "^1.1.1"
+    "ava": "^3.15.0",
+    "eslint": "^7.30.0",
+    "eslint-plugin-metafizzy": "^1.2.1"
   },
   "scripts": {
     "test": "npm run lint && ava",
