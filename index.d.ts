@@ -43,7 +43,7 @@ declare module "ev-emitter" {
      * @param {eventName} eventName Name of the event
      * @param {args} args Arguments passed to listeners
      */
-    emitEvent(eventName: string, args: any[]): this;
+    emitEvent(eventName: string, args?: any[]): this;
     /**
      * Removes all event listeners.
      */
