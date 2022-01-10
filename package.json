@@ -3,6 +3,7 @@
   "version": "2.1.2",
   "description": "lil' event emitter",
   "main": "ev-emitter.js",
+  "types": "index.d.ts",
   "devDependencies": {
     "ava": "^3.15.0",
     "eslint": "^7.30.0",
