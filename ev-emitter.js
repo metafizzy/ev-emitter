@@ -44,9 +44,9 @@ proto.once = function( eventName, listener ) {
   // set onceEvents hash
   let onceEvents = this._onceEvents = this._onceEvents || {};
   // set onceListeners object
-  let onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
+  onceEvents[ eventName ] = onceEvents[ eventName ] || new global.WeakSet();
   // set flag
-  onceListeners[ listener ] = true;
+  onceEvents[ eventName ].add( listener );
 
   return this;
 };
@@ -74,13 +74,13 @@ proto.emitEvent = function( eventName, args ) {
   let onceListeners = this._onceEvents && this._onceEvents[ eventName ];
 
   for ( let listener of listeners ) {
-    let isOnce = onceListeners && onceListeners[ listener ];
+    let isOnce = onceListeners && onceListeners.has( listener );
     if ( isOnce ) {
       // remove listener
       // remove before trigger to prevent recursion
       this.off( eventName, listener );
       // unset once flag
-      delete onceListeners[ listener ];
+      delete onceListeners.delete( listener );
     }
     // trigger listener
     listener.apply( this, args );
